@@ -4,8 +4,8 @@ function getMovies() {
     return movies;
 }
 
-function getSingleMovie() {
-    const movieId = Number(req.params.id);
+function getSingleMovie(movieId) {
+    Number(movieId);
     const movie = movies.find(movie => movie.id === movieId);
     return movie;
 }
@@ -16,7 +16,6 @@ function createMovie(newMovie) {
     movies.push(newMovie);
     return res.status(200).send('Película creada correctamente');
 }
-
 
 function deleteMovie(movieId) {
     const movie = movies.find(movie => movie.id === parseInt(movieId));
@@ -36,7 +35,6 @@ function updateMovie(movieId) {
 }
 
 function addLikes(movieId) {
-
     const movie = movies.find(movie => movie.id === parseInt(movieId));
     if (!movie) {
         return res.status(400).send('Película no encontrada');
@@ -47,7 +45,6 @@ function addLikes(movieId) {
 }
 
 function removeLikes(movieId) {
-
     const movie = movies.find(movie => movie.id === parseInt(movieId));
     if (!movie) {
         return res.status(400).send('Película no encontrada');
@@ -56,6 +53,5 @@ function removeLikes(movieId) {
         return movies;
     }
 }
-
 
 module.exports = { getMovies, getSingleMovie, createMovie, deleteMovie, updateMovie, addLikes, removeLikes };
