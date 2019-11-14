@@ -1,5 +1,5 @@
 {
-  "name": "CrudNode",
+  "name": "crudnode",
   "version": "1.0.0",
   "description": "Pruebas de api con películas",
   "main": "index.js",
