@@ -6,11 +6,11 @@ const movies = [{ name: 'BatmanVSuperman', id: 1, likes: 0 }, { name: 'The Last 
 app.get('/', (req, res) => {
   res.json(movies);
 });
-//1
+//ask movies
 app.get('/movies', (req, res) => {
   res.json(movies);
 });
-
+//ask a single movie
 app.get('/movies/:id', (req, res) => {
   const movieId = Number(req.params.id);
   const movie = movies.find(movie => movie.id === movieId);
@@ -25,13 +25,24 @@ app.post('/movies/create', (req, res) => {
   movies.push(newMovie);
   return res.status(200).send('Película creada correctamente');
 });
-
-app.post('/movies/delete/:id', (req, res) => {
+//delete
+app.post('/movies/delete/:id', (req, res) => {//DUDA: no recuerdo como evitar que al eliminar 1 los id se reseteen
   const movieId = req.params.id;
   const movie = movies.find(movie => movie.id === parseInt(movieId));
   const position = movies.indexOf(movie);
   movies.splice(position, 1);//NO LO ENTIENDO
   return res.status(200).send('Película eliminada correctamente');
+});
+//update
+app.put('/movies/update/:id', (req, res) => {  //DUDA: no se como evitar que me elimine las pelícuas
+  const movieId = req.params.id;
+  const movie = movies.find(movie => movie.id === parseInt(movieId));
+  if (!movie) {
+    return res.status(400).send('Película no encontrada');
+  }
+  // Ahora sólo actualizo el nombre
+  movie.name = req.body.name;
+  return res.status(200).send('Película actualizada correctamente');
 });
 
 
