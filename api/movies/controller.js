@@ -1,12 +1,11 @@
 const fs = require('fs');
 const filePath = './api/movies/movies_data.txt';
 const movies = [{ name: 'BatmanVSuperman', id: 1, likes: 0 }, { name: 'The Last Samurai', id: 2, likes: 1 }];
-const contenido = JSON.stringify(movies);
-fs.writeFile(filePath, contenido, err => {
+const contenido = JSON.stringify(movies);//nota para mi, esto se hace una vez para tener un inicio. Borrar esta función pues estaría reescribiando el fichero
+fs.writeFile(filePath, contenido, err => {//siempre con la mismo info. Habŕía que moverlo mas abajo para que guarde la info que metamos en postman
     if (err) {
         console.err('Error', err);
     } else {
-
         console.log('Fichero guardado correctamen', contenido);
     }
 });
