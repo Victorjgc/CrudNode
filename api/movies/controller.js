@@ -1,24 +1,27 @@
-
+//const fs = require('fs');
+//const filePath = './api/movies/movies_data.json';
 const movies = [{ name: 'BatmanVSuperman', id: 1, likes: 0 }, { name: 'The Last Samurai', id: 2, likes: 1 }];
 function getMovies() {
     return movies;
 }
 
 function getSingleMovie(movieId) {
-    Number(movieId);
-    const movie = movies.find(movie => movie.id === movieId);
+    console.log(movieId);
+    const movie = movies.find(movie => movie.id === parseInt(movieId));
     return movie;
 }
 
 function createMovie(newMovie) {
+    
+
     newMovie.id = movies[movies.length - 1].id + 1;
     newMovie.likes = 0;
     movies.push(newMovie);
-    return res.status(200).send('Película creada correctamente');
+    return movies;
 }
 
 function deleteMovie(movieId) {
-    const movie = movies.find(movie => movie.id === parseInt(movieId));
+    const movie = movies.find(movie => movie.id === parseInt(movieId));S
     const position = movies.indexOf(movie);
     movies.splice(position, 1);//NO LO ENTIENDO
     return res.status(200).send('Película eliminada correctamente');
