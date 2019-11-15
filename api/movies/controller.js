@@ -1,6 +1,16 @@
-//const fs = require('fs');
-//const filePath = './api/movies/movies_data.json';
+const fs = require('fs');
+const filePath = './api/movies/movies_data.txt';
 const movies = [{ name: 'BatmanVSuperman', id: 1, likes: 0 }, { name: 'The Last Samurai', id: 2, likes: 1 }];
+const contenido = JSON.stringify(movies);
+fs.writeFile(filePath, contenido, err => {
+    if (err) {
+        console.err('Error', err);
+    } else {
+
+        console.log('Fichero guardado correctamen', contenido);
+    }
+});
+
 function getMovies() {
     return movies;
 }
@@ -12,7 +22,7 @@ function getSingleMovie(movieId) {
 }
 
 function createMovie(newMovie) {
-    
+
 
     newMovie.id = movies[movies.length - 1].id + 1;
     newMovie.likes = 0;
@@ -21,7 +31,7 @@ function createMovie(newMovie) {
 }
 
 function deleteMovie(movieId) {
-    const movie = movies.find(movie => movie.id === parseInt(movieId));S
+    const movie = movies.find(movie => movie.id === parseInt(movieId)); S
     const position = movies.indexOf(movie);
     movies.splice(position, 1);//NO LO ENTIENDO
     return res.status(200).send('Película eliminada correctamente');
