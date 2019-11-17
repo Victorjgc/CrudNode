@@ -1,28 +1,38 @@
 const fs = require('fs');
 const filePath = './api/movies/movies_data.txt';
 const movies = [{ name: 'BatmanVSuperman', id: 1, likes: 0 }, { name: 'The Last Samurai', id: 2, likes: 1 }];
-const contenido = JSON.stringify(movies);//nota para mi, esto se hace una vez para tener un inicio. Borrar esta función pues estaría reescribiando el fichero
+//const contenido = JSON.stringify(movies);//nota para mi, esto se hace una vez para tener un inicio. Borrar esta función pues estaría reescribiando el fichero
+/*
 fs.writeFile(filePath, contenido, err => {//siempre con la mismo info. Habŕía que moverlo mas abajo para que guarde la info que metamos en postman
     if (err) {
         console.err('Error', err);
     } else {
         console.log('Fichero guardado correctamen', contenido);
     }
-});
+});*/
 
-function getMovies() {
+function getPrueba() {
+    
+    fs.readFile(filePath, (err, data) => {
+
+            jsonMovie = (JSON.parse(data));
+            //console.log(jsonMovie);
+            send(jsonMovie);
+    }); 
+    
+}
+
+function getMovies()  {
     return movies;
 }
 
 function getSingleMovie(movieId) {
-    console.log(movieId);
+
     const movie = movies.find(movie => movie.id === parseInt(movieId));
     return movie;
 }
 
 function createMovie(newMovie) {
-
-
     newMovie.id = movies[movies.length - 1].id + 1;
     newMovie.likes = 0;
     movies.push(newMovie);
@@ -30,10 +40,10 @@ function createMovie(newMovie) {
 }
 
 function deleteMovie(movieId) {
-    const movie = movies.find(movie => movie.id === parseInt(movieId)); S
+    const movie = movies.find(movie => movie.id === parseInt(movieId)); 
     const position = movies.indexOf(movie);
     movies.splice(position, 1);//NO LO ENTIENDO
-    return res.status(200).send('Película eliminada correctamente');
+    return movies //res.status(200).send('Película eliminada correctamente');
 }
 
 function updateMovie(movieId) {
@@ -66,4 +76,4 @@ function removeLikes(movieId) {
     }
 }
 
-module.exports = { getMovies, getSingleMovie, createMovie, deleteMovie, updateMovie, addLikes, removeLikes };
+module.exports = { getMovies, getSingleMovie, createMovie, deleteMovie, updateMovie, addLikes, removeLikes, getPrueba };

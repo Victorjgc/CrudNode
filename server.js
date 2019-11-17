@@ -8,5 +8,6 @@ app.use(express.json());//añadir estas líneas siempre
 app.use(morgan('combined'));//MORGAN nos da todos los logs por la terminal
 app.use('/movies', moviesRouter);
 
+
 app.listen(3000, () => console.log('Ready on port 3000!'));
 
