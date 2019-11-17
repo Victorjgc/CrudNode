@@ -7,6 +7,7 @@ const session = require('express-session');
 const rateLimit = require("express-rate-limit");
 const app = express();
 const moviesRouter = require('./api/movies');
+const request = require('superagent');
 
 const apiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
