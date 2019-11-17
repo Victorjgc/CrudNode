@@ -1,6 +1,8 @@
-
 const movies = [{ name: 'BatmanVSuperman', id: 1, likes: 0 }, { name: 'The Last Samurai', id: 2, likes: 1 }];
 
+function getSessions(){
+    return movies;
+}
 
 function getMovies() {
     return movies;
@@ -58,4 +60,4 @@ function removeLikes(movieId) {
     }
 }
 
-module.exports = { getMovies, getSingleMovie, createMovie, deleteMovie, updateMovie, addLikes, removeLikes };
+module.exports = { getMovies, getSingleMovie, createMovie, deleteMovie, updateMovie, addLikes, removeLikes, getSessions };
