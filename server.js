@@ -7,6 +7,11 @@ const session = require('express-session');
 const rateLimit = require("express-rate-limit");
 const app = express();
 const moviesRouter = require('./api/movies');
+const cors = require('cors');
+
+const corsOptions = {
+    origin: ['http://localhost:3000/movies']
+};
 
 const apiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
@@ -21,7 +26,7 @@ app.use(session({ secret: '1234' }));
 app.use(morgan('combined'));//MORGAN nos da todos los logs por la terminal
 app.use(compression());
 app.use('/movies', moviesRouter);
-
+app.use(cors(corsOptions));
 function errorHandler(err, req, res, next) {
     if (!err) { 
         return next(); 
@@ -38,7 +43,6 @@ if (process.env.NODE_ENV === 'development') {
     app.use(errorHandler);
 }
  
-
 
 
 app.listen(3000, () => console.log('Ready on port 3000!'));
