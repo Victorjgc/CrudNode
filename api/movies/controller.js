@@ -8,7 +8,7 @@ fs.writeFile(filePath, contenido, err => {//siempre con la mismo info. Habŕía 
         console.err('Error', err);
     } else {
         console.log('Fichero guardado correctamen', contenido);
-    }
+    }  
 });*/
 
 function getPrueba() {
