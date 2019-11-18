@@ -33,7 +33,7 @@ function writteInFile(newMovie){
     newMovie.likes = 0;
     movies.push(newMovie); 
     let jsonMovies = JSON.stringify(movies);
-    fs.writeFile(filePath, jsonMovies, err => {//siempre con la mismo info. Habŕía que moverlo mas abajo para que guarde la info que metamos en postman
+    fs.writeFile(filePath, jsonMovies, err => {
         if (err) {
             console.err('Error', err);
         } else {
