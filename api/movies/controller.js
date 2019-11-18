@@ -9,12 +9,11 @@ const movies = [{ name: 'BatmanVSuperman', id: 1, likes: 0 }, { name: 'The Last 
         console.log('Fichero guardado correctamen', contenido);
     }
 });*/
-
+//para leer ficheros 
 function loadMovies () {
     console.log(fs.readFileSync(filePath, "utf8"));
     return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
-
 
 function getMovies() {
     return movies;
@@ -24,6 +23,24 @@ function getSingleMovie(movieId) {
     console.log(movieId);
     const movie = movies.find(movie => movie.id === parseInt(movieId));
     return movie;
+}
+
+//para escribir ficheros
+function writteInFile(newMovie){
+    let movies = loadMovies();
+    console.log(movies);
+    newMovie.id = movies[movies.length - 1].id + 1;
+    newMovie.likes = 0;
+    movies.push(newMovie); 
+    let jsonMovies = JSON.stringify(movies);
+    fs.writeFile(filePath, jsonMovies, err => {//siempre con la mismo info. Habŕía que moverlo mas abajo para que guarde la info que metamos en postman
+        if (err) {
+            console.err('Error', err);
+        } else {
+            console.log('Fichero guardado correctamente', jsonMovies);
+        }
+    });
+    return movies;
 }
 
 function createMovie(newMovie) {
@@ -70,4 +87,4 @@ function removeLikes(movieId) {
     }
 }
 
-module.exports = { getMovies, getSingleMovie, createMovie, deleteMovie, updateMovie, addLikes, removeLikes, loadMovies, loadMovies};
+module.exports = { getMovies, getSingleMovie, createMovie, deleteMovie, updateMovie, addLikes, removeLikes, loadMovies, loadMovies, writteInFile};
