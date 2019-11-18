@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 let controller = require('./controller');
 
+router.get('/load', (req, res) => res.json(controller.loadMovies()));
 router.get('/', (req, res) => res.json(controller.getMovies()));
 router.get('/:id', (req, res) => res.json(controller.getSingleMovie(req.params.id)));
 router.post('/create', (req, res) => res.json(controller.createMovie(req.body)));
