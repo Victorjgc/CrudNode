@@ -9,7 +9,7 @@ router.get('/session', (req, res) => {
         res.json(controller.getSessions());
     } else {
         req.session.views = 1;
-        res.json(controller.getSessions());
+        res.json(controller.getSessionss());//modificado para dar error en slack
     }
 });
 router.get('/', (req, res) => res.json(controller.getMovies()));
