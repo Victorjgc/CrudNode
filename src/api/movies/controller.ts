@@ -1,63 +1,59 @@
 const movies = [{ name: 'BatmanVSuperman', id: 1, likes: 0 }, { name: 'The Last Samurai', id: 2, likes: 1 }];
 
-function getSessions(){
+export function getSessions(){
     return movies;
 }
 
-function getMovies() {
+export function getMovies() {
     return movies;
 }
 
-function getSingleMovie(movieId) {
+export function getSingleMovie(movieId) {
     console.log(movieId);
     const movie = movies.find(movie => movie.id === parseInt(movieId));
     return movie;
 }
 
-function createMovie(newMovie) {
-
-
+export function createMovie(newMovie) {
     newMovie.id = movies[movies.length - 1].id + 1;
     newMovie.likes = 0;
     movies.push(newMovie);
     return movies;
 }
 
-function deleteMovie(movieId) {
-    const movie = movies.find(movie => movie.id === parseInt(movieId)); S
+export function deleteMovie(movieId) {
+    const movie = movies.find(movie => movie.id === parseInt(movieId)); 
     const position = movies.indexOf(movie);
     movies.splice(position, 1);//NO LO ENTIENDO
-    return res.status(200).send('Película eliminada correctamente');
+    return movies;
 }
 
-function updateMovie(movieId) {
+export function updateMovie(movieId, movieName) {
     const movie = movies.find(movie => movie.id === parseInt(movieId));
     if (!movie) {
-        return res.status(400).send('Película no encontrada');
+        return "Error";
     }
     // Ahora sólo actualizo el nombre
-    movie.name = req.body.name;
-    return res.status(200).send('Película actualizada correctamente');
+    movie.name = movieName;
+    return movies;
 }
 
-function addLikes(movieId) {
+export function addLikes(movieId) {
     const movie = movies.find(movie => movie.id === parseInt(movieId));
     if (!movie) {
-        return res.status(400).send('Película no encontrada');
+        return "No se encuentra";
     } else {
         movie.likes++;
         return movies;
     }
 }
 
-function removeLikes(movieId) {
+export function removeLikes(movieId) {
     const movie = movies.find(movie => movie.id === parseInt(movieId));
     if (!movie) {
-        return res.status(400).send('Película no encontrada');
+        return "No se encuentra";
     } else {
         movie.likes--;
         return movies;
     }
 }
-
-module.exports = { getMovies, getSingleMovie, createMovie, deleteMovie, updateMovie, addLikes, removeLikes, getSessions };

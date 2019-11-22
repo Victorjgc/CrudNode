@@ -2,22 +2,30 @@
   "name": "crudnode",
   "version": "1.0.0",
   "description": "Pruebas de api con películas",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "server": "node server.js",
     "dev": " NODE_ENV=development nodemon server.js",
     "test": "jest",
-    "pruebas": "node ./api/movies/pruebas.js"
+    "pruebas": "node ./api/movies/pruebas.js",
+    "lint": "tslint -p ./tsconfig.json",
+    "new-dev": "NODE_ENV=development ts-node server.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/mongodb": "^3.3.10",
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
+    "@types/node": "^10.0.8",
     "demon": "^1.4.4",
+    "eslint": "^6.6.0",
     "jest": "^24.9.0",
     "nodemon": "^1.19.4",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.2",
+    "ts-node": "^6.0.3",
+    "tslint-config-prettier": "^1.12.0"
   },
   "dependencies": {
     "compression": "^1.7.4",
@@ -29,6 +37,7 @@
     "method-override": "^2.3.10",
     "mongodb": "^3.3.4",
     "mongoose": "^5.7.11",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "@types/express-session": "^1.15.8"
   }
 }
