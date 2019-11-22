@@ -8,7 +8,7 @@ export function getMovies() {
     return movies;
 }
 
-export function getSingleMovie(movieId) {
+export function getSingleMovie(movieId: string) {
     console.log(movieId);
     const movie = movies.find(movie => movie.id === parseInt(movieId));
     return movie;
@@ -21,14 +21,14 @@ export function createMovie(newMovie) {
     return movies;
 }
 
-export function deleteMovie(movieId) {
+export function deleteMovie(movieId: string) {
     const movie = movies.find(movie => movie.id === parseInt(movieId)); 
     const position = movies.indexOf(movie);
     movies.splice(position, 1);//NO LO ENTIENDO
     return movies;
 }
 
-export function updateMovie(movieId, movieName) {
+export function updateMovie(movieId: string, movieName: string) {
     const movie = movies.find(movie => movie.id === parseInt(movieId));
     if (!movie) {
         return "Error";
@@ -38,7 +38,7 @@ export function updateMovie(movieId, movieName) {
     return movies;
 }
 
-export function addLikes(movieId) {
+export function addLikes(movieId: string) {
     const movie = movies.find(movie => movie.id === parseInt(movieId));
     if (!movie) {
         return "No se encuentra";
@@ -48,7 +48,7 @@ export function addLikes(movieId) {
     }
 }
 
-export function removeLikes(movieId) {
+export function removeLikes(movieId: string) {
     const movie = movies.find(movie => movie.id === parseInt(movieId));
     if (!movie) {
         return "No se encuentra";
