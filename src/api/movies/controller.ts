@@ -17,6 +17,21 @@ export function getMoviesMongo() {
         });
     });
 }
+/*
+export function getSingleMovieMongo(movieId: string) {
+    return new Promise((resolve, reject) => {
+      MongoClient.connect(MONGO_URL, (err, client) => {
+        if (!err) {
+          const db = client.db('movies');
+          const moviesCollection = db.collection('movies');
+          moviesCollection.findOne({ _id:  ObjectId(movieId) }).then(movie => resolve(movie)).catch(errorDelete => reject(errorDelete));
+        } else {
+          reject(err);
+        }
+      });
+    });
+}
+*/
 
 export function getSessions(){
     return movies;
