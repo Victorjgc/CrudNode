@@ -1,4 +1,22 @@
 const movies = [{ name: 'BatmanVSuperman', id: 1, likes: 0 }, { name: 'The Last Samurai', id: 2, likes: 1 }];
+import { MongoClient, Server, ObjectId } from 'mongodb';
+const MONGO_URL = 'mongodb://localhost:27017';
+
+export function getMoviesMongo() {
+    return new Promise((resolve, reject) => {
+        MongoClient.connect(MONGO_URL, (err, client) => {
+          if (!err) {
+            const db = client.db('movies');
+            const moviesCollection = db.collection('movies');
+            moviesCollection.find({}).limit(20).toArray()
+              .then(movies => resolve(movies))
+              .catch(errorFind => reject(errorFind));
+          } else {
+            reject(err);
+          }
+        });
+    });
+}
 
 export function getSessions(){
     return movies;

@@ -1,5 +1,5 @@
 import * as express from 'express';
-import  { getMovies, getSingleMovie, createMovie, deleteMovie, updateMovie, addLikes, removeLikes, getSessions } from './controller';
+import  { getMovies, getSingleMovie, createMovie, deleteMovie, updateMovie, addLikes, removeLikes, getSessions, getMoviesMongo } from './controller';
 const router = express.Router();
 
 
@@ -13,6 +13,7 @@ router.get('/session', (req, res) => {
         res.json(getSessions());
     }
 });
+router.get('/mongo', (req, res) =>  { getMoviesMongo().then(movies => res.json(movies)).catch(err => res.status(500).send(err)); });
 router.get('/', (req, res) => res.json(getMovies()));
 router.get('/:id', (req, res) => res.json(getSingleMovie(req.params.id)));
 router.post('/create', (req, res) => res.json(createMovie(req.body)));
