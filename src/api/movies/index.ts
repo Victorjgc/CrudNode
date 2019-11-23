@@ -1,5 +1,5 @@
 import * as express from 'express';
-import  { getMovies, getSingleMovie, createMovie, deleteMovie, updateMovie, addLikes, removeLikes, getSessions, getMoviesMongo, getSingleMovieMongo } from './controller';
+import  { getMovies, getSingleMovie, createMovie, deleteMovie, updateMovie, addLikes, removeLikes, getSessions, getMoviesMongo/*, getSingleMovieMongo */} from './controller';
 const router = express.Router();
 
 
@@ -14,10 +14,11 @@ router.get('/session', (req, res) => {
     }
 });
 router.get('/mongo', (req, res) =>  { getMoviesMongo().then(movies => res.json(movies)).catch(err => res.status(500).send(err)); });
-router.get('/singlemongo/:id', (req, res) => {
+
+/*router.get('/singlemongo/:id', (req, res) => {
     getSingleMovieMongo(req.params.id).then(movie => res.json(movie)).catch(err => res.status(500).send(err));
   });
-  
+  */
 //sin usar base de datos
 router.get('/', (req, res) => res.json(getMovies()));
 router.get('/:id', (req, res) => res.json(getSingleMovie(req.params.id)));
