@@ -12,7 +12,7 @@ function getSingleMovie(movieId) {
     console.log(movieId);
     const movie = movies.find(movie => movie.id === parseInt(movieId));
     return movie;
-}
+} 
 
 function createMovie(newMovie) {
 
